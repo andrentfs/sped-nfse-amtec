@@ -1,0 +1,1 @@
+<ConsultarNfseRpsEnvio xmlns="http://nfse.goiania.go.gov.br/xsd/nfse_gyn_v02.xsd"><IdentificacaoRps><Numero>123</Numero><Serie>UNICA</Serie><Tipo>1</Tipo></IdentificacaoRps><Prestador><InscricaoMunicipal>3625958</InscricaoMunicipal></Prestador></ConsultarNfseRpsEnvio>
