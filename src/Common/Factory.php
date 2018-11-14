@@ -56,55 +56,31 @@ class Factory
      */
     public function render()
     {
-        $infRps = $this->dom->createElement('InfRps');
-        $att = $this->dom->createAttribute('Id');
-        $att->value = 'rps:'.$this->std->identificacaorps->numero.$this->std->identificacaorps->serie;
-        $infRps->appendChild($att);
+        $infRps = $this->dom->createElement('InfDeclaracaoPrestacaoServico');
         
-        $this->addIdentificacao($infRps);
-        
+        $innerRPS = $this->dom->createElement('Rps');
+        //$att = $this->dom->createAttribute('Id');
+        //$att->value = 'rps'.$this->std->identificacaorps->numero.$this->std->identificacaorps->serie;
+        //$innerRPS->appendChild($att);
+        $this->addIdentificacao($innerRPS);
         $this->dom->addChild(
-            $infRps,
+            $innerRPS,
             "DataEmissao",
             $this->std->dataemissao,
             true
         );
         $this->dom->addChild(
-            $infRps,
-            "NaturezaOperacao",
-            $this->std->naturezaoperacao,
-            true
-        );
-        $this->dom->addChild(
-            $infRps,
-            "RegimeEspecialTributacao",
-            $this->std->regimeespecialtributacao,
-            true
-        );
-        $this->dom->addChild(
-            $infRps,
-            "OptanteSimplesNacional",
-            $this->std->optantesimplesnacional,
-            true
-        );
-        $this->dom->addChild(
-            $infRps,
-            "IncentivadorCultural",
-            $this->std->incentivadorcultural,
-            false
-        );
-        $this->dom->addChild(
-            $infRps,
+            $innerRPS,
             "Status",
             $this->std->status,
             true
         );
-        
+        $infRps->appendChild($innerRPS);
         $this->addServico($infRps);
         $this->addTomador($infRps);
         $this->addIntermediario($infRps);
         $this->addConstrucao($infRps);
-        
+
         $this->rps->appendChild($infRps);
         $this->dom->appendChild($this->rps);
         return $this->dom->saveXML();
@@ -157,14 +133,6 @@ class Factory
         );
         $this->dom->addChild(
             $valnode,
-            "ValorDeducoes",
-            isset($val->valordeducoes)
-                ? number_format($val->valordeducoes, 2, '.', '')
-                : null,
-            false
-        );
-        $this->dom->addChild(
-            $valnode,
             "ValorPis",
             isset($val->valorpis)
                 ? number_format($val->valorpis, 2, '.', '')
@@ -189,46 +157,10 @@ class Factory
         );
         $this->dom->addChild(
             $valnode,
-            "ValorIr",
-            isset($val->valorir)
-                ? number_format($val->valorir, 2, '.', '')
-                : null,
-            false
-        );
-        $this->dom->addChild(
-            $valnode,
             "ValorCsll",
             isset($val->valorcsll)
                 ? number_format($val->valorcsll, 2, '.', '')
                 : null,
-            false
-        );
-        $this->dom->addChild(
-            $valnode,
-            "IssRetido",
-            isset($val->issretido) ? $val->issretido : null,
-            false
-        );
-        $this->dom->addChild(
-            $valnode,
-            "ValorIss",
-            isset($val->valoriss)
-                ? number_format($val->valoriss, 2, '.', '')
-                : null,
-            false
-        );
-        $this->dom->addChild(
-            $valnode,
-            "OutrasRetencoes",
-            isset($val->outrasretencoes)
-                ? number_format($val->outrasretencoes, 2, '.', '')
-                : null,
-            false
-        );
-        $this->dom->addChild(
-            $valnode,
-            "Aliquota",
-            isset($val->aliquota) ? $val->aliquota : null,
             false
         );
         $this->dom->addChild(
@@ -239,22 +171,7 @@ class Factory
                 : null,
             false
         );
-        $this->dom->addChild(
-            $valnode,
-            "DescontoCondicionado",
-            isset($val->descontocondicionado)
-                ? number_format($val->descontocondicionado, 2, '.', '')
-                : null,
-            false
-        );
         $node->appendChild($valnode);
-        
-        $this->dom->addChild(
-            $node,
-            "ItemListaServico",
-            $serv->itemlistaservico,
-            true
-        );
         $this->dom->addChild(
             $node,
             "CodigoTributacaoMunicipio",
@@ -287,7 +204,6 @@ class Factory
             return;
         }
         $tom = $this->std->tomador;
-        $end = $this->std->tomador->endereco;
         
         $node = $this->dom->createElement('Tomador');
         $ide = $this->dom->createElement('IdentificacaoTomador');
@@ -321,50 +237,53 @@ class Factory
             $tom->razaosocial,
             true
         );
-        $endereco = $this->dom->createElement('Endereco');
-        $this->dom->addChild(
-            $endereco,
-            "Endereco",
-            $end->endereco,
-            true
-        );
-        $this->dom->addChild(
-            $endereco,
-            "Numero",
-            $end->numero,
-            true
-        );
-        $this->dom->addChild(
-            $endereco,
-            "Complemento",
-            isset($end->complemento) ? $end->complemento : null,
-            false
-        );
-        $this->dom->addChild(
-            $endereco,
-            "Bairro",
-            $end->bairro,
-            true
-        );
-        $this->dom->addChild(
-            $endereco,
-            "CodigoMunicipio",
-            $end->codigomunicipio,
-            true
-        );
-        $this->dom->addChild(
-            $endereco,
-            "Uf",
-            $end->uf,
-            true
-        );
-        $this->dom->addChild(
-            $endereco,
-            "Cep",
-            $end->cep,
-            true
-        );
-        $node->appendChild($endereco);
+        if (!empty($this->std->tomador->endereco)) {
+            $end = $this->std->tomador->endereco;
+            $endereco = $this->dom->createElement('Endereco');
+            $this->dom->addChild(
+                $endereco,
+                "Endereco",
+                $end->endereco,
+                true
+            );
+            $this->dom->addChild(
+                $endereco,
+                "Numero",
+                $end->numero,
+                true
+            );
+            $this->dom->addChild(
+                $endereco,
+                "Complemento",
+                isset($end->complemento) ? $end->complemento : null,
+                false
+            );
+            $this->dom->addChild(
+                $endereco,
+                "Bairro",
+                $end->bairro,
+                true
+            );
+            $this->dom->addChild(
+                $endereco,
+                "CodigoMunicipio",
+                $end->codigomunicipio,
+                true
+            );
+            $this->dom->addChild(
+                $endereco,
+                "Uf",
+                $end->uf,
+                true
+            );
+            $this->dom->addChild(
+                $endereco,
+                "Cep",
+                !empty($end->cep) ? $end->cep : null,
+                false
+            );
+            $node->appendChild($endereco);
+        }
         $parent->appendChild($node);
     }
     

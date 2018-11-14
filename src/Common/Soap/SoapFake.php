@@ -46,7 +46,7 @@ class SoapFake extends SoapBase implements SoapInterface
             'url' => $url,
             'operation' => $operation,
             'action' => $action,
-            'soapver' => '1.1',
+            'soapver' => '1.2',
             'parameters' => $parameters,
             'header' => $requestHead,
             'namespaces' => [],
