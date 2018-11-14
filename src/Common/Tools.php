@@ -56,8 +56,11 @@ class Tools
         $this->certificate = $cert;
         $this->buildPrestadorTag();
         $wsobj = $this->urls;
+        if (empty($this->urls[$this->config->cmun])) {
+            throw new \Exception('Apenas Goiania é aceito. cMun=5208707');
+        }
         $this->wsobj = json_decode(json_encode($this->urls[$this->config->cmun]));
-        $this->environment = 'homologacao';
+        $this->environment = 'producao';
         if ($this->config->tpamb === 1) {
             $this->environment = 'producao';
         }
@@ -77,10 +80,13 @@ class Tools
      */
     protected function buildPrestadorTag()
     {
-        $this->prestador = "<Prestador>"
-            . "<CpfCnpj>"
-            . "<Cnpj>" . $this->config->cnpj . "</Cnpj>"
-            . "</CpfCnpj>"
+        $this->prestador = "<Prestador><CpfCnpj>";
+        if (!empty($this->config->cnpj)) {
+            $this->prestador .= "<Cnpj>" . $this->config->cnpj . "</Cnpj>";
+        } else {
+            $this->prestador .= "<Cpf>" . $this->config->cpf . "</Cpf>";
+        }
+        $this->prestador .= "</CpfCnpj>"
             . "<InscricaoMunicipal>" . $this->config->im . "</InscricaoMunicipal>"
             . "</Prestador>";
     }
@@ -98,7 +104,9 @@ class Tools
             $this->certificate,
             $content,
             $tagname,
-            $mark
+            $mark,
+            OPENSSL_ALGO_SHA1,
+            [true, false, null, null]
         );
         $dom = new Dom('1.0', 'UTF-8');
         $dom->preserveWhiteSpace = false;
@@ -158,7 +166,7 @@ class Tools
             : '';
         if (empty($node)) {
             return $response;
-        }    
+        }
         return $node->textContent;
     }
 
@@ -170,12 +178,13 @@ class Tools
      */
     protected function createSoapRequest($message, $operation)
     {
+        
         $env = "<soap12:Envelope "
             . "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
             . "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" "
             . "xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">"
             . "<soap12:Body>"
-            . "<$operation xmlns=\"{$this->wsobj->soapns}\">"
+            . "<$operation xmlns=\"". $this->wsobj->soapns . "\">"
             . "<ArquivoXML></ArquivoXML>"
             . "</$operation>"
             . "</soap12:Body>"
@@ -204,12 +213,23 @@ class Tools
         $dom->loadXML($rps->render());
         $referenceNode = $dom->getElementsByTagName('Servico')->item(0);
         $node = $dom->createElement('Prestador');
-        $dom->addChild(
-            $node,
-            "Cnpj",
-            $this->config->cnpj,
-            true
-        );
+        $CpfCnpj = $dom->createElement('CpfCnpj');
+        if (!empty($this->config->cnpj)) {
+            $dom->addChild(
+                $CpfCnpj,
+                "Cnpj",
+                $this->config->cnpj,
+                true
+            );
+        } else {
+            $dom->addChild(
+                $CpfCnpj,
+                "Cpf",
+                $this->config->cpf,
+                true
+            );
+        }
+        $node->appendChild($CpfCnpj);
         $dom->addChild(
             $node,
             "InscricaoMunicipal",

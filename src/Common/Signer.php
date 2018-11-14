@@ -138,9 +138,9 @@ class Signer
         $transfNode1 = $dom->createElement('Transform');
         $transformsNode->appendChild($transfNode1);
         $transfNode1->setAttribute('Algorithm', $nsTransformMethod1);
-        //$transfNode2 = $dom->createElement('Transform');
-        //$transformsNode->appendChild($transfNode2);
-        //$transfNode2->setAttribute('Algorithm', $nsTransformMethod2);
+        $transfNode2 = $dom->createElement('Transform');
+        $transformsNode->appendChild($transfNode2);
+        $transfNode2->setAttribute('Algorithm', $nsTransformMethod2);
         $digestMethodNode = $dom->createElement('DigestMethod');
         $referenceNode->appendChild($digestMethodNode);
         $digestMethodNode->setAttribute('Algorithm', $nsDigestMethod);
@@ -289,9 +289,9 @@ class Signer
         if ($sigMethAlgo == 'http://www.w3.org/2000/09/xmldsig#rsa-sha1') {
             $algorithm = 'sha1';
         }
-        if ($sigURI == '') {
-            $node->removeChild($signature);
-        }
+        //if ($sigURI == '') {
+        //    $node->removeChild($signature);
+        //}
         $calculatedDigest = self::makeDigest($node, $algorithm, $canonical);
         $informedDigest = $signature->getElementsByTagName('DigestValue')->item(0)->nodeValue;
         if ($calculatedDigest != $informedDigest) {
