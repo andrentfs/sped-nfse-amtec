@@ -160,7 +160,7 @@ elemento tcInfNfse/DeclaracaoPrestacaoServico (Layout alterado para minOccurs="0
 
 O link abaixo retorna a NFS-e formatada em HTML para visualização e impressão:
   
-http://www2.goiania.go.gov.br/sistemas/snfse/asp/snfse00200w0.asp?inscricao=\<Inscricao_municipal\>&nota=\<Numero_da_nota\>&verificador=\<Codigo_de_verificacao\>
+http://www2.goiania.go.gov.br/sistemas/snfse/asp/snfse00200w0.asp?inscricao=Inscricao_municipal&nota=Numero_da_nota&verificador=Codigo_de_verificacao
 
 Os campos "Numero da nota" e "Codigo de verificacao" são retornados no XML resposta de cada nota gerada.
 
@@ -203,32 +203,32 @@ Após a finalização da fase de testes e solicitada a adesão à NFS-e junto à
 ## DÚVIDAS FREQUENTES
 
 
-P: Como realizo a alteração do modo do web service para PRODUÇÃO?
+*P: Como realizo a alteração do modo do web service para PRODUÇÃO?*
 
 R: Após finalizados os testes e concluído o Processo de autorização na Secretaria de Finanças, o Prestador deve solicitar através do e-mail suporte.nfse@goiania.go.gov.br a alteração da utilização do web service para modo PRODUÇÃO, informando a Inscrição Municipal e Razão Social da empresa.
 
 
-P: Como posso verificar se o Prestador está em modo TESTE ou modo PRODUÇÃO?
+*P: Como posso verificar se o Prestador está em modo TESTE ou modo PRODUÇÃO?*
 
 R: Inicialmente, todos os Prestadores estão em modo TESTE. O modo do Prestador só é alterado mediante solicitação do mesmo. Caso você esteja recebendo como retorno a nota fictícia de número 370, você está em modo TESTE.
 
 
-P: O Prestador já está em modo PRODUÇÃO, porém necessito realizar testes na geração de notas. Como proceder?
+*P: O Prestador já está em modo PRODUÇÃO, porém necessito realizar testes na geração de notas. Como proceder?*
 
 R: Preencha a tag \<serie\> do XML com o valor "TESTE" ao consumir o serviço de geração de notas. Assim, o sistema se comportará como se o Prestador estivesse em modo TESTE para esta solicitação em específico.
 
 
-P: Como proceder a substituição de notas?
+*P: Como proceder a substituição de notas?*
 
 R: Através do site na NFS-e (http://goiania.go.gov.br/nfse/), nos termos lá descritos, ou via Processo Administrativo junto à Secretaria de Finanças. Não existe substituição via web service.
 
 
-P: Como proceder o cancelamento de notas?
+*P: Como proceder o cancelamento de notas?*
 
 R: Através de Processo Administrativo junto à Secretaria de Finanças. Não existe cancelamento via web service.
 
 
-P: Estou recebendo erros relativos ao protocolo SOAP. Como proceder?
+*P: Estou recebendo erros relativos ao protocolo SOAP. Como proceder?*
 
 R: Consulte os endereços:
 
@@ -237,31 +237,27 @@ https://nfse.goiania.go.gov.br/ws/nfse.asmx?op=GerarNfse
 https://nfse.goiania.go.gov.br/ws/nfse.asmx?op=ConsultarNfseRps
 
 
-P: Como adicionar dados ao campo "Informações Adicionais" via web service?
+*P: Como adicionar dados ao campo "Informações Adicionais" via web service?*
 
 R: Só é possível preencher este campo da nota fiscal quando gerada através do site da NFS-e. Não há como adicionar dados a este campo ao gerar uma nota via web service. Seguindo os padrões da ABRASF, este campo é apenas de leitura, acessível apenas quando uma nota é consultada. Caso o Prestador deseje adicionar informações adicionais à nota via web service, recomendamos que utilize o campo "Discriminação" para este fim.
 
-P: É necessário a utilização do Certificado Digital / Assinatura Digital quando o Prestador está em modo TESTE?
+*P: É necessário a utilização do Certificado Digital / Assinatura Digital quando o Prestador está em modo TESTE?*
 
 R: Sim.
 
-
-P: É possível, quando em desenvolvimento, utilizar-se de um Certificado Digital alternativo ao do Prestador?
+*P: É possível, quando em desenvolvimento, utilizar-se de um Certificado Digital alternativo ao do Prestador?*
 
 R: Sim, apenas temporariamente e quando o Prestador encontra-se em modo TESTE. O Certificado Digital deve ser válido e estar dentro das especificações descritas nas instruções de integração. Realize esta solicitação através do e-mail suporte.nfse@goiania.go.gov.br.
 
-
-P: Existe uma numeração diferente para as notas fiscais geradas via web service?
+*P: Existe uma numeração diferente para as notas fiscais geradas via web service?*
 
 R: Não. A numeração das notas fiscais eletrônicas seguem uma sequência única. Seja a geração realizada pelo site da NFS-e ou via web service, o sistema pegará o próximo número de nota para aquele Prestador.
 
-
-P: O número do RPS deve obrigatoriamente acompanhar o número da nota fiscal?
+*P: O número do RPS deve obrigatoriamente acompanhar o número da nota fiscal?*
 
 R: Não. RPS e número de nota fiscal são numerações independentes. O número da nota é sequencial, controlado pela Prefeitura, e sempre continuará na mesma sequência única. O número do RPS é de controle do Prestador e deve ser único. Não é permitido repetir um número de RPS. O número de RPS não precisa ser necessariamente sequencial. Cada número de RPS é associado a um número de nota fiscal, não necessitando ambos serem iguais.
 
-
-P: Existem registros duplicados na Tabela de Municípios? Como a Tabela de Municípios funciona?
+*P: Existem registros duplicados na Tabela de Municípios? Como a Tabela de Municípios funciona?*
 
 R: Não existem registros duplicados na Tabela de Municípios.
 
@@ -287,7 +283,7 @@ Logo este Bom Jesus é um Distrito do Município de Ceres, uma localidade difere
 ### INCONSISTÊNCIAS QUE COSTUMAM GERAR DÚVIDAS
 
 
-Código: L002
+**Código: L002**
 
 Mensagem: CPF ou CNPJ da assinatura digital não confere com o CPF ou CNPJ do prestador dos serviços.
 
@@ -296,19 +292,22 @@ Resolução:
 O CPF/CNPJ do Certificado Digital utilizado para assinar o XML não confere com o CPF/CNPJ do Prestador no XML. O CPF/CNPJ do Certificado Digital deve ser IDÊNTICO ao CPF/CNPJ constante nos dados do Prestador do XML e IDÊNTICO ao CPF/CNPJ constante no Cadastro do Prestador na Prefeitura de Goiânia. Não é permitido o uso de CNPJ raiz se este não for EXATAMENTE o mesmo CNPJ constante no Cadastro da Prefeitura. Por este motivo não é possível emitir notas fiscais para filiais utilizando Certificado Digital contendo o CNPJ raiz das matrizes quando estes não são EXATAMENTE iguais.
 
 
-Código: L999
+**Código: L999**
 
 Mensagem: ATIVIDADE INFORMADA INEXISTENTE NO SEU CADASTRO NA PREFEITURA
 
 Resolução:
 
 A Prefeitura de Goiânia utiliza a tag CodigoTributacaoMunicipio para definir a Atividade Econômica à qual pertence o serviço prestado discriminado na nota.
+
 A tag CodigoTributacaoMunicipio deve conter um dos códigos de atividade econômica prestacional existentes no Cadastro do Prestador na Prefeitura de Goiânia.
+
 Os Códigos de Atividade Econômica possuem 9 dígitos, são definidos por tabela da Prefeitura e podem ser consultados nos Sistemas DMS, REST ou NFS-e no portal da Prefeitura na Internet, na opção "Consulta Dados Cadastrais".
+
 Um nota pode conter mais de um serviço desde que pertencentes ao mesmo código de atividade econômica (CodigoTributacaoMunicipio).
 
 
-Código: L999
+**Código: L999**
 
 Mensagem: CODIGO DO MUNICIPIO NAO ENCONTRADO
 
@@ -319,7 +318,7 @@ Resolução:
 - O código da tabela de municípios no XML de envio deve ser preenchido com zeros à esquerda para totalizar as 7 posições do layout ABRASF versão 2.0.
 
 
-Código: E160
+**Código: E160**
 
 Mensagem: Arquivo em desacordo com o XML Schema.
 
@@ -329,7 +328,7 @@ Existem inconsistências em relação ao Schema XSD. Existem aplicações que re
 
 Use os exemplos anexados às instruções de integração como base inicial de referência para a implementação.
 
-Código: E172
+**Código: E172**
 
 Mensagem: Arquivo enviado com erro na assinatura.
 
