@@ -57,11 +57,14 @@ class Factory
     public function render()
     {
         $infRps = $this->dom->createElement('InfDeclaracaoPrestacaoServico');
+        $att = $this->dom->createAttribute('xmlns');
+        $att->value = 'http://nfse.goiania.go.gov.br/xsd/nfse_gyn_v02.xsd';
+        $infRps->appendChild($att);
         
         $innerRPS = $this->dom->createElement('Rps');
-        //$att = $this->dom->createAttribute('Id');
-        //$att->value = 'rps'.$this->std->identificacaorps->numero.$this->std->identificacaorps->serie;
-        //$innerRPS->appendChild($att);
+        $att = $this->dom->createAttribute('Id');
+        $att->value = 'rps'.$this->std->identificacaorps->numero.$this->std->identificacaorps->serie;
+        $innerRPS->appendChild($att);
         $this->addIdentificacao($innerRPS);
         $this->dom->addChild(
             $innerRPS,

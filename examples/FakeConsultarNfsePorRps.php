@@ -31,7 +31,7 @@ try {
     $tools->loadSoapClass($soap);
 
     $numero = 123456;
-    $serie = 'UNICA';
+    $serie = 'A';
     $tipo = 1;
 
     $response = $tools->consultarNfsePorRps($numero, $serie, $tipo);

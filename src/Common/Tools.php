@@ -94,17 +94,15 @@ class Tools
     /**
      * Sign XML passing in content
      * @param string $content
-     * @param string $tagname
-     * @param string $mark
      * @return string XML signed
      */
-    public function sign($content, $tagname, $mark)
+    public function sign($content)
     {
         $xml = Signer::sign(
             $this->certificate,
             $content,
-            $tagname,
-            $mark,
+            '',
+            'Id',
             OPENSSL_ALGO_SHA1,
             [true, false, null, null]
         );
