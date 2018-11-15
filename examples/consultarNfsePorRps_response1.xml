@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ConsultarNfseRpsResposta xmlns="http://nfse.goiania.go.gov.br/xsd/nfse_gyn_v02.xsd">
+    <CompNfse>
+        <Nfse>
+            <InfNfse>
+                <Numero>370</Numero>
+                <CodigoVerificacao>MB94-C3ZA</CodigoVerificacao>
+                <DataEmissao>2011-08-30T00:00:00</DataEmissao>
+                <OutrasInformacoes>OUTRAS INFORMACOES SOBRE O SERVICO.</OutrasInformacoes>
+                <ValoresNfse>
+                    <BaseCalculo>0</BaseCalculo>
+                    <Aliquota>5</Aliquota>
+                    <ValorIss>0</ValorIss>
+                </ValoresNfse>
+                <DeclaracaoPrestacaoServico>
+                    <IdentificacaoRps>
+                        <Numero>14</Numero>
+                        <Serie>UNICA</Serie>
+                        <Tipo>1</Tipo>
+                    </IdentificacaoRps>
+                    <DataEmissaoRps>2011-08-30</DataEmissaoRps>
+                    <Competencia>2011-08-30T00:00:00</Competencia>
+                    <Servico>
+                        <Valores>
+                            <ValorServicos>1000.00</ValorServicos>
+                            <ValorDeducoes>1000</ValorDeducoes>
+                            <ValorPis>0.00</ValorPis>
+                            <ValorCofins>0.00</ValorCofins>
+                            <ValorInss>0.00</ValorInss>
+                            <ValorIr>0.00</ValorIr>
+                            <ValorCsll>0.00</ValorCsll>
+                            <ValorIss>0</ValorIss>
+                            <Aliquota>5</Aliquota>
+                            <DescontoIncondicionado>0.00</DescontoIncondicionado>
+                        </Valores>
+                        <IssRetido>2</IssRetido>
+                        <CodigoTributacaoMunicipio>791120000</CodigoTributacaoMunicipio>
+                        <Discriminacao>TESTE DE GERACAO OK.\s\nEM PRODUCAO, SUA NOTA SERIA GERADA SEM CRITICAS.\s\nOS DADOS DESSA NOTA SAO FICTICIOS.</Discriminacao>
+                        <CodigoMunicipio>0025300</CodigoMunicipio>
+                        <ExigibilidadeISS>1</ExigibilidadeISS>
+                        <MunicipioIncidencia>0025300</MunicipioIncidencia>
+                    </Servico>
+                    <Prestador>
+                        <IdentificacaoPrestador>
+                            <CpfCnpj>
+                                <Cnpj>02843557000110</Cnpj>
+                            </CpfCnpj>
+                            <InscricaoMunicipal>1300687</InscricaoMunicipal>
+                        </IdentificacaoPrestador>
+                    </Prestador>
+                    <Tomador>
+                        <IdentificacaoTomador>
+                            <CpfCnpj>
+                                <Cpf>88888888888</Cpf>
+                            </CpfCnpj>
+                        </IdentificacaoTomador>
+                        <RazaoSocial>JOSE DA SILVA TOMADOR DO SERVICO</RazaoSocial>
+                        <Endereco>
+                            <Endereco>RUA DAS AMENDOEIRAS</Endereco>
+                            <Numero>30</Numero>
+                            <Complemento>LOTE 4</Complemento>
+                            <Bairro>CENTRO</Bairro>
+                            <CodigoMunicipio>0025300</CodigoMunicipio>
+                            <Uf>GO</Uf>
+                            <Cep>74823350</Cep>
+                        </Endereco>
+                    </Tomador>
+                    <OptanteSimplesNacional>2</OptanteSimplesNacional>
+                </DeclaracaoPrestacaoServico>
+            </InfNfse>
+            <versao>2.0</versao>
+        </Nfse>
+    </CompNfse>
+    <ListaMensagemRetorno>
+        <MensagemRetorno>
+            <Codigo>L000</Codigo>
+            <Mensagem>NORMAL</Mensagem>
+        </MensagemRetorno>
+    </ListaMensagemRetorno>
+</ConsultarNfseRpsResposta>

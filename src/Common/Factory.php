@@ -63,9 +63,11 @@ class Factory
         
         $innerRPS = $this->dom->createElement('Rps');
         $att = $this->dom->createAttribute('Id');
-        $att->value = 'rps'.$this->std->identificacaorps->numero.$this->std->identificacaorps->serie;
+        $att->value = $this->std->identificacaorps->numero; //.$this->std->identificacaorps->serie;
         $innerRPS->appendChild($att);
+        
         $this->addIdentificacao($innerRPS);
+        
         $this->dom->addChild(
             $innerRPS,
             "DataEmissao",
@@ -79,6 +81,7 @@ class Factory
             true
         );
         $infRps->appendChild($innerRPS);
+        
         $this->addServico($infRps);
         $this->addTomador($infRps);
         $this->addIntermediario($infRps);

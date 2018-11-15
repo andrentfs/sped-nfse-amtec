@@ -126,7 +126,7 @@ $jsonSchema = '{
                         },
                         "codigomunicipio": {
                             "required": true,
-                            "type": "integer",
+                            "type": "string",
                             "pattern": "^[0-9]{7}"
                         },
                         "uf": {
@@ -167,7 +167,7 @@ $jsonSchema = '{
                 },
                 "codigomunicipio": {
                     "required": true,
-                    "type": "integer",
+                    "type": "string",
                     "pattern": "^[0-9]{7}"
                 },
                 "valores": {
@@ -316,7 +316,7 @@ $std->tomador->endereco->endereco = 'Rua das Rosas';
 $std->tomador->endereco->numero = '111';
 $std->tomador->endereco->complemento = 'Sobre Loja';
 $std->tomador->endereco->bairro = 'Centro';
-$std->tomador->endereco->codigomunicipio = 3106200;
+$std->tomador->endereco->codigomunicipio = '3106200';
 $std->tomador->endereco->uf = 'MG';
 $std->tomador->endereco->cep = 30160010;
 
@@ -324,7 +324,7 @@ $std->servico = new \stdClass();
 $std->servico->itemlistaservico = '11.01';
 $std->servico->codigotributacaomunicipio = '522310000';
 $std->servico->discriminacao = 'Teste de RPS';
-$std->servico->codigomunicipio = 3106200;
+$std->servico->codigomunicipio = '3106200';
 
 $std->servico->valores = new \stdClass();
 $std->servico->valores->valorservicos = 100.00;

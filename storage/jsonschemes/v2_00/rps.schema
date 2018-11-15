@@ -114,7 +114,7 @@
                         },
                         "codigomunicipio": {
                             "required": true,
-                            "type": "integer",
+                            "type": "string",
                             "pattern": "^[0-9]{7}"
                         },
                         "uf": {
@@ -155,7 +155,7 @@
                 },
                 "codigomunicipio": {
                     "required": true,
-                    "type": "integer",
+                    "type": "string",
                     "pattern": "^[0-9]{7}"
                 },
                 "valores": {
