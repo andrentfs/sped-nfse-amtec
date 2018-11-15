@@ -13,6 +13,28 @@ Atende apenas o Municipio de Goiânia - GO
 - URL Única: https://nfse.goiania.go.gov.br/ws/nfse.asmx
 - xmlns: http://nfse.goiania.go.gov.br/xsd/nfse_gyn_v02.xsd
 
+[![Latest Stable Version][ico-stable]][link-packagist]
+[![Build Status][ico-travis]][link-travis]
+[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
+[![Quality Score][ico-code-quality]][link-code-quality]
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![License][ico-license]][link-packagist]
+[![Total Downloads][ico-downloads]][link-downloads]
+
+[![Issues][ico-issues]][link-issues]
+[![Forks][ico-forks]][link-forks]
+[![Stars][ico-stars]][link-stars]
+
+Este pacote é aderente com os [PSR-1], [PSR-2] e [PSR-4]. Se você observar negligências de conformidade, por favor envie um patch via pull request.
+
+[PSR-1]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md
+[PSR-2]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md
+[PSR-4]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md
+
+Não deixe de se cadastrar no [grupo de discussão do NFePHP](http://groups.google.com/group/nfephp) para acompanhar o desenvolvimento e participar das discussões e tirar duvidas!
+
+
+
 ## Instalação 
 
 Este pacote está listado no Packgist foi desenvolvido para uso do Composer, portanto não será explicitada nenhuma alternativa de instalação.
@@ -414,4 +436,25 @@ A tag \<InfDeclaracaoPrestacaoServico\> deve conter também o namespace xmlns="h
 </soap12:Envelope>
 ```
 
+[ico-stable]: https://poser.pugx.org/nfephp-org/sped-nfse-amtec/version
+[ico-stars]: https://img.shields.io/github/stars/nfephp-org/sped-nfse-amtec.svg?style=flat-square
+[ico-forks]: https://img.shields.io/github/forks/nfephp-org/sped-nfse-amtec.svg?style=flat-square
+[ico-issues]: https://img.shields.io/github/issues/nfephp-org/sped-nfse-amtec.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/nfephp-org/sped-nfse-amtec/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/nfephp-org/sped-nfse-amtec.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/nfephp-org/sped-nfse-amtec.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/nfephp-org/sped-nfse-amtec.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/nfephp-org/sped-nfse-amtec.svg?style=flat-square
+[ico-license]: https://poser.pugx.org/nfephp-org/nfephp/license.svg?style=flat-square
+[ico-gitter]: https://img.shields.io/badge/GITTER-4%20users%20online-green.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/nfephp-org/sped-nfse-amtec
+[link-travis]: https://travis-ci.org/nfephp-org/sped-nfse-amtec
+[link-scrutinizer]: https://scrutinizer-ci.com/g/nfephp-org/sped-nfse-amtec/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/nfephp-org/sped-nfse-amtec
+[link-downloads]: https://packagist.org/packages/nfephp-org/sped-nfse-amtec
+[link-author]: https://github.com/nfephp-org
+[link-issues]: https://github.com/nfephp-org/sped-nfse-amtec/issues
+[link-forks]: https://github.com/nfephp-org/sped-nfse-amtec/network
+[link-stars]: https://github.com/nfephp-org/sped-nfse-amtec/stargazers
 
