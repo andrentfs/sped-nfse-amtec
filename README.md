@@ -38,10 +38,9 @@ Existem apenas DOIS métodos no webservice:
 
 > Nenhuma outra função do modelo ABRASF está disponivel por webservice, então caso se deseje um cancelamento por exemplo isso deverá ser feito diretamente na pagina da Prefeitura.
 
-Além desse métod do webservice também existe uma pagina onde é possivel obter um HTML formatado para impressão da NFSe.
+Além desses métodos do webservice também existe uma pagina onde é possivel obter um HTML formatado para impressão da NFSe.
 
 http://www2.goiania.go.gov.br/sistemas/snfse/asp/snfse00200w0.asp?inscricao=1300687&nota=370&verificador=MB94-C3ZA
-
 
 
 ## GERAÇÃO SÍNCRONA DE UMA NFS-e (GerarNfse):
@@ -72,7 +71,11 @@ Em modo TESTE todas as validações e críticas são reais, porém, nenhuma Nota
 
 Para a utilização do web service em modo TESTE não é necessário Processo Administrativo ou qualquer autorização ou senha.
 
-Para a utilização do web service em modo PRODUÇÃO o Processo Administrativo de autorização de emissão de NFS-e junto à Secretaria de Finanças deve ter sido concluído. Note que este é o Processo Administrativo que qualquer Prestador normalmente passa para começar a emitir NFS-e, seja pelo site ou pelo web service. Não existe processo administrativo para a alteração do modo do web service. Apenas um e-mail deve ser enviado solicitando esta alteração.
+Para a utilização do web service em modo PRODUÇÃO o Processo Administrativo de autorização de emissão de NFS-e junto à Secretaria de Finanças deve ter sido concluído.
+
+Note que este é o Processo Administrativo que qualquer Prestador normalmente passa para começar a emitir NFS-e, seja pelo site ou pelo web service.
+
+Não existe processo administrativo para a alteração do modo do web service. **Apenas um e-mail deve ser enviado solicitando esta alteração.**
 
 Após finalizados os testes e concluído o Processo de autorização na Secretaria de Finanças, o Prestador deve solicitar através do e-mail suporte.nfse@goiania.go.gov.br a alteração da utilização do web service para modo PRODUÇÃO, informando a Inscrição Municipal e Razão Social da empresa. O prazo médio para atendimento é de 1 dia.
  
@@ -142,13 +145,13 @@ elemento tcInfNfse/DeclaracaoPrestacaoServico (Layout alterado para minOccurs="0
 - Para emitir uma nota fiscal para pessoa física que não informou o endereço, não informe a tag <Endereco>.
 - O campo Razão Social do Tomador é sempre obrigatório e, no caso de Tomador do tipo pessoa física não informado, pode-se preenchê-lo com texto padrão (Ex.: “TOMADOR NAO INFORMADO”).
 - A tag alíquota será obrigatória apenas quando o Prestador é enquadrado no Simples Nacional. Nas demais situações essa informação não é obrigatória e será gerada pelo sistema.
-- As quebras de linha na tag <Discriminacao> devem ser representadas pelo conjunto "\s\n", conforme modelo ABRASF versão 2.0.
-- Os caracteres permitidos atualmente na tag <Discriminacao> são os seguintes, dentro das aspas: "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&$%()/+-.,;:=* ".
+- As quebras de linha na tag \<Discriminacao\> devem ser representadas pelo conjunto "\s\n", conforme modelo ABRASF versão 2.0.
+- Os caracteres permitidos atualmente na tag \<Discriminacao\> são os seguintes, dentro das aspas: "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&$%()/+-.,;:=* ".
 - A tabela de municípios a ser utilizada é a mesma em uso atualmente na DMS (Declaração Mensal de Serviços), REST (Relação de Serviços de Terceiros) e MAPA BANCÁRIO na Prefeitura de Goiânia.
-- A tabela de municípios contém diferenças em relação à tabela de municípios do IBGE.
+- A tabela de municípios contém diferenças em relação à tabela de municípios do IBGE [TABELA](examples/Municipios_SETEC_22.04.2013.txt).
 - O código da tabela de municípios no XML de envio deve ser preenchido com zeros à esquerda para totalizar as 7 posições do layout ABRASF versão 2.0.
-- A Prefeitura de Goiânia utiliza a tag <CodigoTributacaoMunicipio> para definir a Atividade Econômica à qual pertence o serviço prestado discriminado na nota.
-- A tag <CodigoTributacaoMunicipio> deve conter um dos códigos de atividade econômica prestacional existentes no Cadastro do Prestador na Prefeitura de Goiânia.
+- A Prefeitura de Goiânia utiliza a tag \<CodigoTributacaoMunicipio\> para definir a Atividade Econômica à qual pertence o serviço prestado discriminado na nota.
+- A tag \<CodigoTributacaoMunicipio\> deve conter um dos códigos de atividade econômica prestacional existentes no Cadastro do Prestador na Prefeitura de Goiânia.
 - Os Códigos de Atividade Econômica possuem 9 dígitos, são definidos por tabela da Prefeitura e podem ser consultados nos Sistemas DMS, REST ou NFS-e no portal da Prefeitura na Internet, na opção "Consulta Dados Cadastrais".
 - Um nota pode conter mais de um serviço desde que pertencentes ao mesmo código de atividade econômica (CodigoTributacaoMunicipio).
 
@@ -157,7 +160,7 @@ elemento tcInfNfse/DeclaracaoPrestacaoServico (Layout alterado para minOccurs="0
 
 O link abaixo retorna a NFS-e formatada em HTML para visualização e impressão:
   
-http://www2.goiania.go.gov.br/sistemas/snfse/asp/snfse00200w0.asp?inscricao=<Inscricao_municipal>&nota=<Numero_da_nota>&verificador=<Codigo_de_verificacao>
+http://www2.goiania.go.gov.br/sistemas/snfse/asp/snfse00200w0.asp?inscricao=\<Inscricao_municipal\>&nota=\<Numero_da_nota\>&verificador=\<Codigo_de_verificacao\>
 
 Os campos "Numero da nota" e "Codigo de verificacao" são retornados no XML resposta de cada nota gerada.
 
@@ -212,7 +215,7 @@ R: Inicialmente, todos os Prestadores estão em modo TESTE. O modo do Prestador 
 
 P: O Prestador já está em modo PRODUÇÃO, porém necessito realizar testes na geração de notas. Como proceder?
 
-R: Preencha a tag <serie> do XML com o valor "TESTE" ao consumir o serviço de geração de notas. Assim, o sistema se comportará como se o Prestador estivesse em modo TESTE para esta solicitação em específico.
+R: Preencha a tag \<serie\> do XML com o valor "TESTE" ao consumir o serviço de geração de notas. Assim, o sistema se comportará como se o Prestador estivesse em modo TESTE para esta solicitação em específico.
 
 
 P: Como proceder a substituição de notas?
@@ -332,7 +335,7 @@ Mensagem: Arquivo enviado com erro na assinatura.
 
 Resolução:
 
-A tag que deve ser assinada no documento XML de geração de nota fiscal é a primeira tag <Rps>, que vem logo após a tag <GerarNfseEnvio>. Geralmente esse erro ocorre quando uma tag diferente é assinada.
+A tag que deve ser assinada no documento XML de geração de nota fiscal é a primeira tag \<Rps\>, que vem logo após a tag \<GerarNfseEnvio\>. Geralmente esse erro ocorre quando uma tag diferente é assinada.
 
 ```xml
 <Rps>
@@ -351,7 +354,7 @@ A tag que deve ser assinada no documento XML de geração de nota fiscal é a pr
 ```
 No exemplo acima a tag a ser assinada é a identificada com o Id="rps1F"
 
-A tag InfDeclaracaoPrestacaoServico deve conter também o namespace xmlns="http://nfse.goiania.go.gov.br/xsd/nfse_gyn_v02.xsd", caso contrario haverá erro de assinatura.
+A tag \<InfDeclaracaoPrestacaoServico\> deve conter também o namespace xmlns="http://nfse.goiania.go.gov.br/xsd/nfse_gyn_v02.xsd", caso contrario haverá erro de assinatura.
 
 ## [SOAP Envelope ConsultaNfseRps](examples/envelope_consulta_nfse_rps.xml)
 
