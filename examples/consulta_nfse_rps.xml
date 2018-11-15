@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConsultarNfseRpsEnvio xmlns="http://nfse.goiania.go.gov.br/xsd/nfse_gyn_v02.xsd">
+    <IdentificacaoRps>
+        <Numero>123456</Numero>
+        <Serie>A</Serie>
+        <Tipo>1</Tipo>
+    </IdentificacaoRps>
+    <Prestador>
+        <CpfCnpj>
+            <Cnpj>99999999000191</Cnpj>
+        </CpfCnpj>
+        <InscricaoMunicipal>1733160024</InscricaoMunicipal>
+    </Prestador>
+</ConsultarNfseRpsEnvio>

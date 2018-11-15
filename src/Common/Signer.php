@@ -42,7 +42,7 @@ class Signer
     public static function sign(
         Certificate $certificate,
         $content,
-        $tagname,
+        $tagname = '',
         $mark = 'Id',
         $algorithm = OPENSSL_ALGO_SHA1,
         $canonical = self::CANONICAL,
@@ -62,22 +62,18 @@ class Signer
         if (!empty($rootname)) {
             $root = $dom->getElementsByTagName($rootname)->item(0);
         }
-        $node = $dom->getElementsByTagName($tagname)->item(0);
-        if (empty($node) || empty($root)) {
-            throw SignerException::tagNotFound($tagname);
-        }
-        
-        //if (!self::existsSignature($content)) {
-            $dom = self::createSignature(
-                $certificate,
-                $dom,
-                $root,
-                $node,
-                $mark,
-                $algorithm,
-                $canonical
-            );
-        //}
+        $parentnode = $dom->getElementsByTagName('InfDeclaracaoPrestacaoServico')->item(0);
+        $node = $parentnode->getElementsByTagName('Rps')->item(0);
+
+        $dom = self::createSignature(
+            $certificate,
+            $dom,
+            $root,
+            $node,
+            $mark,
+            $algorithm,
+            $canonical
+        );
         
         return "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
             . $dom->saveXML($dom->documentElement, LIBXML_NOXMLDECL);
@@ -289,9 +285,6 @@ class Signer
         if ($sigMethAlgo == 'http://www.w3.org/2000/09/xmldsig#rsa-sha1') {
             $algorithm = 'sha1';
         }
-        //if ($sigURI == '') {
-        //    $node->removeChild($signature);
-        //}
         $calculatedDigest = self::makeDigest($node, $algorithm, $canonical);
         $informedDigest = $signature->getElementsByTagName('DigestValue')->item(0)->nodeValue;
         if ($calculatedDigest != $informedDigest) {

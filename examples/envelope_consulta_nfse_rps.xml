@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+  <soap12:Body>
+    <ConsultarNfseRps xmlns="http://nfse.goiania.go.gov.br/ws/">
+      <ArquivoXML><![CDATA[<ConsultarNfseRpsEnvio xmlns="http://nfse.goiania.go.gov.br/xsd/nfse_gyn_v02.xsd"><IdentificacaoRps><Numero>123456</Numero><Serie>A</Serie><Tipo>1</Tipo></IdentificacaoRps><Prestador><CpfCnpj><Cnpj>99999999000191</Cnpj></CpfCnpj><InscricaoMunicipal>1733160024</InscricaoMunicipal></Prestador></ConsultarNfseRpsEnvio>]]></ArquivoXML>
+    </ConsultarNfseRps>
+  </soap12:Body>
+</soap12:Envelope>

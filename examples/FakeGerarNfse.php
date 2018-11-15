@@ -36,7 +36,7 @@ try {
     $std->version = '2.00';
     $std->IdentificacaoRps = new \stdClass();
     $std->IdentificacaoRps->Numero = 1; //limite 15 digitos
-    $std->IdentificacaoRps->Serie = 'UNICA'; 
+    $std->IdentificacaoRps->Serie = 'F'; 
     $std->IdentificacaoRps->Tipo = 1; //1 - RPS 2-Nota Fiscal Conjugada (Mista) 3-Cupom
     $std->DataEmissao = '2011-08-12T00:00:00';
     $std->Status = 1;  // 1 – Normal  2 – Cancelado

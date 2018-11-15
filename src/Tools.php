@@ -28,7 +28,7 @@ class Tools extends BaseTools
     public function __construct($config, Certificate $cert)
     {
         parent::__construct($config, $cert);
-        $path = realpath('../storage/schemes');
+        $path = realpath(__DIR__ . '/../storage/schemes');
         $this->xsdpath = $path . '/nfse_gyn_v02.xsd';
     }
     
@@ -58,34 +58,35 @@ class Tools extends BaseTools
     
     /**
      * Solicita a emissão de uma NFSe de forma SINCRONA
+     * Apenas um RPS pode ser enviado por vez
      * @param RpsInterface $rps
      * @return string
      */
     public function gerarNfse(RpsInterface $rps)
     {
         $operation = "GerarNfse";
-        
         $xml = $this->putPrestadorInRps($rps);
-        $xmlsigned = $this->sign($xml, 'InfDeclaracaoPrestacaoServico', '');
-        
+        $xmlsigned = $this->sign($xml);
         $content = "<GerarNfseEnvio xmlns=\"{$this->wsobj->msgns}\">"
             . $xmlsigned
             . "</GerarNfseEnvio>";
         Validator::isValid($content, $this->xsdpath);
-        file_put_contents('/var/www/sped/sped-nfse-amtec/storage/signed_rps.xml', $xmlsigned);
-        //header('Content-Type: application/xml; charset=utf-8');
-        //echo $content;
-        //die;
         return $this->send($content, $operation);
     }
     
+    /**
+     * Pega o HTML referente a NFSe na Prefeitura de Goiania
+     * @param string $nota
+     * @param string $verificador
+     * @return string
+     */
     public function getNFSeHtml($nota, $verificador)
     {
         $url = "http://www2.goiania.go.gov.br/sistemas/snfse/asp"
             . "/snfse00200w0.asp?"
-            . "inscricao=1300687"
-            . "&nota=370"
-            . "&verificador=MB94-C3ZA";
+            . "inscricao={$this->config->im}"
+            . "&nota=$nota"
+            . "&verificador=$verificador";
         $ch = curl_init();
         $timeout = 5;
         curl_setopt($ch, CURLOPT_URL, $url);
