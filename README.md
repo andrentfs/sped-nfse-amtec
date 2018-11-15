@@ -13,6 +13,31 @@ Atende apenas o Municipio de Goiânia - GO
 - URL Única: https://nfse.goiania.go.gov.br/ws/nfse.asmx
 - xmlns: http://nfse.goiania.go.gov.br/xsd/nfse_gyn_v02.xsd
 
+## Instalação 
+
+Este pacote está listado no Packgist foi desenvolvido para uso do Composer, portanto não será explicitada nenhuma alternativa de instalação.
+
+E deve ser instalado com:
+
+composer require nfephp-org/sped-nfse-amtec:dev-master --prefer-dist
+Ou ainda alterando o composer.json do seu aplicativo inserindo:
+
+"require": {
+    "nfephp-org/sped-nfse-amtec" : "dev-master"
+}
+Para utilizar o pacote em desenvolvimento (branch master) deve ser instalado com:
+
+composer require nfephp-org/sped-nfe:dev-master --prefer-dist
+Ou ainda alterando o composer.json do seu aplicativo inserindo:
+
+"require": {
+    "nfephp-org/sped-nfse-amtec" : "dev-master"
+}
+NOTA: Ao utilizar este pacote na versão em desenvolvimento não se esqueça de alterar o composer.json da sua aplicação para aceitar pacotes em desenvolvimento, alterando a propriedade "minimum-stability" de "stable" para "dev".
+
+"minimum-stability": "dev"
+
+
 > **ATENÇÃO: O Certificado Digital deve ser emitido para o CNPJ informado no Cadastro de Atividades Econômicas do Prestador da Prefeitura, NÃO sendo aceito Certificado emitido para CNPJ RAIZ**
 
 > NOTA: Não há documentação oficial disponível. O suporte pela pagina da prefeitura é inexistente.
