@@ -171,6 +171,22 @@ class Factory
         );
         $this->dom->addChild(
             $valnode,
+            "OutrasRetencoes",
+            isset($val->outrasretencoes)
+                ? number_format($val->outrasretencoes, 2, '.', '')
+                : null,
+            false
+        );
+        $this->dom->addChild(
+            $valnode,
+            "ValorIss",
+            isset($val->valoriss)
+                ? number_format($val->valoriss, 2, '.', '')
+                : null,
+            false
+        );
+        $this->dom->addChild(
+            $valnode,
             "Aliquota",
             isset($val->aliquota)
                 ? number_format($val->aliquota, 2, '.', '')
@@ -182,6 +198,14 @@ class Factory
             "DescontoIncondicionado",
             isset($val->descontoincondicionado)
                 ? number_format($val->descontoincondicionado, 2, '.', '')
+                : null,
+            false
+        );
+        $this->dom->addChild(
+            $valnode,
+            "DescontoCondicionado",
+            isset($val->descontocondicionado)
+                ? number_format($val->descontocondicionado, 2, '.', '')
                 : null,
             false
         );
@@ -311,13 +335,8 @@ class Factory
             return;
         }
         $int = $this->std->intermediarioservico;
-        $node = $this->dom->createElement('IntermediarioServico');
-        $this->dom->addChild(
-            $node,
-            "RazaoSocial",
-            $int->razaosocial,
-            true
-        );
+        $node = $this->dom->createElement('Intermediario');
+        $identifc = $this->dom->createElement('IdentificacaoIntermediario');
         $cpfcnpj = $this->dom->createElement('CpfCnpj');
         if (isset($int->cnpj)) {
             $this->dom->addChild(
@@ -334,12 +353,19 @@ class Factory
                 true
             );
         }
-        $node->appendChild($cpfcnpj);
+        $identifc->appendChild($cpfcnpj);
         $this->dom->addChild(
-            $node,
+            $identifc,
             "InscricaoMunicipal",
             $int->inscricaomunicipal,
             false
+        );
+        $node->appendChild($identifc);
+        $this->dom->addChild(
+            $node,
+            "RazaoSocial",
+            $int->razaosocial,
+            true
         );
         $parent->appendChild($node);
     }

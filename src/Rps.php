@@ -7,7 +7,7 @@ namespace NFePHP\NFSeAmtec;
  *
  * @category  NFePHP
  * @package   NFePHP\NFSeAmtec
- * @copyright NFePHP Copyright (c) 2008-2018
+ * @copyright NFePHP Copyright (c) 2008-2019
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
@@ -66,7 +66,7 @@ class Rps implements RpsInterface
         if (!empty($rps)) {
             $this->std = $this->propertiesToLower($rps);
             $ver = str_replace('.', '_', $rps->version);
-            $this->jsonschema = \Safe\realpath("../storage/jsonSchemes/v$ver/rps.schema");
+            $this->jsonschema = realpath(__DIR__ . "/../storage/jsonSchemes/v$ver/rps.schema");
             $this->validInputData($this->std);
         }
     }
