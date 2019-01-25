@@ -240,7 +240,7 @@ class Signer
         $publicKey = PublicKey::createFromContent($certificateContent);
         $signInfoNode = self::canonize($signature->getElementsByTagName('SignedInfo')->item(0), $canonical);
         $signatureValue = $signature->getElementsByTagName('SignatureValue')->item(0)->nodeValue;
-        $decodedSignature = base64_decode(str_replace(array("\r", "\n"), '', $signatureValue));
+        $decodedSignature = \Safe\base64_decode(str_replace(array("\r", "\n"), '', $signatureValue));
         if (!$publicKey->verify($signInfoNode, $decodedSignature, $algorithm)) {
             throw SignerException::signatureComparisonFailed();
         }

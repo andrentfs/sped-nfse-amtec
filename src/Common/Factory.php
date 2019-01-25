@@ -171,6 +171,14 @@ class Factory
         );
         $this->dom->addChild(
             $valnode,
+            "Aliquota",
+            isset($val->aliquota)
+                ? number_format($val->aliquota, 2, '.', '')
+                : null,
+            false
+        );
+        $this->dom->addChild(
+            $valnode,
             "DescontoIncondicionado",
             isset($val->descontoincondicionado)
                 ? number_format($val->descontoincondicionado, 2, '.', '')
