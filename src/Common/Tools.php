@@ -52,14 +52,14 @@ class Tools
      */
     public function __construct($config, Certificate $cert)
     {
-        $this->config = json_decode($config);
+        $this->config = \Safe\json_decode($config);
         $this->certificate = $cert;
         $this->buildPrestadorTag();
         $wsobj = $this->urls;
         if (empty($this->urls[$this->config->cmun])) {
             throw new \Exception('Apenas Goiania é aceito. cMun=5208707');
         }
-        $this->wsobj = json_decode(json_encode($this->urls[$this->config->cmun]));
+        $this->wsobj = \Safe\json_decode(\Safe\json_encode($this->urls[$this->config->cmun]));
         $this->environment = 'producao';
         if ($this->config->tpamb === 1) {
             $this->environment = 'producao';
@@ -134,7 +134,7 @@ class Tools
         }
         $msgSize = strlen($request);
         $parameters = [
-            "Content-Type: text/xml;charset=UTF-8",
+            "Content-Type: application/soap+xml; charset=utf-8",
             "SOAPAction: \"$action\"",
             "Content-length: $msgSize"
         ];
@@ -161,11 +161,12 @@ class Tools
         $dom->loadXML($response);
         $node = !empty($dom->getElementsByTagName("{$operation}Result")->item(0))
             ? $dom->getElementsByTagName("{$operation}Result")->item(0)
-            : '';
+            : null;
         if (empty($node)) {
             return $response;
-        }
-        return $node->textContent;
+        } else {
+            return $node->textContent;
+        }    
     }
 
     /**
@@ -235,6 +236,12 @@ class Tools
             true
         );
         $dom->insertAfter($node, $referenceNode);
+        
+        if ($this->config->tpamb === 2) {
+            $ref = $dom->getElementsByTagName('InfDeclaracaoPrestacaoServico')->item(0);
+            $serie = $ref->getElementsByTagName('Serie')->item(0);
+            $serie->nodeValue = 'TESTE';
+        }
         return $dom->saveXML($dom->documentElement);
     }
 }

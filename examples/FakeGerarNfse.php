@@ -12,12 +12,11 @@ use NFePHP\NFSeAmtec\Common\FakePretty;
 try {
     
     $config = [
-        'cpf' => '24329550130',
-        //'cnpj' => '99999999000191',
-        'im' => '1442678',
+        'cnpj' => '99999999000191',
+        'im' => '99999999',
         'cmun' => '5208707',
         'razao' => 'Empresa Test Ltda',
-        'tpamb' => 1 //não existe diferença entre homologaçao e produção CUIDADO
+        'tpamb' => 2
     ];
 
     $configJson = json_encode($config);
@@ -36,7 +35,7 @@ try {
     $std->version = '2.00';
     $std->IdentificacaoRps = new \stdClass();
     $std->IdentificacaoRps->Numero = 1; //limite 15 digitos
-    $std->IdentificacaoRps->Serie = 'F'; 
+    $std->IdentificacaoRps->Serie = 'UNICA'; 
     $std->IdentificacaoRps->Tipo = 1; //1 - RPS 2-Nota Fiscal Conjugada (Mista) 3-Cupom
     $std->DataEmissao = '2011-08-12T00:00:00';
     $std->Status = 1;  // 1 – Normal  2 – Cancelado
@@ -46,7 +45,6 @@ try {
     $std->Tomador->Cpf = "28222148168";
     $std->Tomador->InscricaoMunicipal = '1708';
     $std->Tomador->RazaoSocial = "LUIZ AUGUSTO MARINHO NOLETO";
-
     
     $std->Tomador->Endereco = new \stdClass();
     $std->Tomador->Endereco->Endereco = 'RUA 3';
@@ -68,6 +66,7 @@ try {
     $std->Servico->Valores->ValorCofins = 40.50;
     $std->Servico->Valores->ValorInss = 10.50;
     $std->Servico->Valores->ValorCsll = 10.50;
+    $std->Servico->Valores->Aliquota = 2.00;
     $std->Servico->Valores->DescontoIncondicionado = 500.00;
     
     //$std->IntermediarioServico = new \stdClass();

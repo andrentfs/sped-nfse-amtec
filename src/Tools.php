@@ -7,7 +7,7 @@ namespace NFePHP\NFSeAmtec;
  *
  * @category  NFePHP
  * @package   NFePHP\NFSeAmtec
- * @copyright NFePHP Copyright (c) 2008-2018
+ * @copyright NFePHP Copyright (c) 2008-2019
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
@@ -28,7 +28,7 @@ class Tools extends BaseTools
     public function __construct($config, Certificate $cert)
     {
         parent::__construct($config, $cert);
-        $path = realpath(__DIR__ . '/../storage/schemes');
+        $path = \Safe\realpath(__DIR__ . '/../storage/schemes');
         $this->xsdpath = $path . '/nfse_gyn_v02.xsd';
     }
     
@@ -87,12 +87,12 @@ class Tools extends BaseTools
             . "inscricao={$this->config->im}"
             . "&nota=$nota"
             . "&verificador=$verificador";
-        $ch = curl_init();
+        $ch = \Safe\curl_init();
         $timeout = 5;
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-        $data = curl_exec($ch);
+        \Safe\curl_setopt($ch, CURLOPT_URL, $url);
+        \Safe\curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        \Safe\curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $data = (string) \Safe\curl_exec($ch);
         curl_close($ch);
         $path = "http://www2.goiania.go.gov.br";
         $data = str_replace(
@@ -109,7 +109,7 @@ class Tools extends BaseTools
             . "border=\"0\">",
             $data
         );
-        $data = iconv("ISO-8859-1//TRANSLIT", 'UTF-8', $data);
+        $data = \Safe\iconv("ISO-8859-1//TRANSLIT", 'UTF-8', $data);
         return $data;
     }
 }
