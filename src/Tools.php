@@ -28,7 +28,7 @@ class Tools extends BaseTools
     public function __construct($config, Certificate $cert)
     {
         parent::__construct($config, $cert);
-        $path = \Safe\realpath(__DIR__ . '/../storage/schemes');
+        $path = realpath(__DIR__ . '/../storage/schemes');
         $this->xsdpath = $path . '/nfse_gyn_v02.xsd';
     }
     
@@ -67,10 +67,12 @@ class Tools extends BaseTools
         $operation = "GerarNfse";
         $xml = $this->putPrestadorInRps($rps);
         $xmlsigned = $this->sign($xml);
+        
         $content = "<GerarNfseEnvio xmlns=\"{$this->wsobj->msgns}\">"
             . $xmlsigned
             . "</GerarNfseEnvio>";
         Validator::isValid($content, $this->xsdpath);
+        
         return $this->send($content, $operation);
     }
     

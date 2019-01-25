@@ -166,7 +166,7 @@ class Tools
             return $response;
         } else {
             return $node->textContent;
-        }    
+        }
     }
 
     /**
